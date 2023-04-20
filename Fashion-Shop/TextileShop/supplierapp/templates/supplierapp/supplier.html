@@ -1,0 +1,56 @@
+{% extends 'supplier_partials/base.html' %}
+{% block title %}Supplier Page {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!--Table-->
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+            <div class="border bg-white p-3">
+                <h4>Add Suppliers</h4>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}<br>
+                    <input class="btn btn-success btn-block" type="submit" value="Add Suppliers">
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white">
+                <thead style="background-color:rgb(211,208,208);">
+                    <tr class="text-darck">
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Type of Supplier</th>
+                        <th scope="col">Activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for supplier in sup %}
+                    <tr>
+                        <td>{{ supplier.name }}</td>
+                        <td>{{ supplier.address }}</td>
+                        <td>{{ supplier.type }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'supplierapp-supplier-update' supplier.id %}">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'supplierapp-supplier-delete' supplier.id %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                 
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!--End Table-->
+{% endblock %}
+

@@ -1,0 +1,51 @@
+{% extends 'fashion/admin_base.html' %}
+{% block content %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Receive Supplier Order</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>item Id</th>
+          <th>Mobile</th>
+          <th>Received</th>
+        </tr>
+      </thead>
+      {% for p in suppliers %}
+      <tr>
+        <td> {{p.get_name}}</td>
+        <td>{{p.item_code}}</td>
+        <td>{{p.mobile}}</td>
+        <td><a class="btn btn-primary btn-xs" href="{% url 'cancel-supplier' p.id  %}"><span class="glyphicon glyphicon-log-out"></span></a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+
+</div>
+
+{% endblock content %}

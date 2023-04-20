@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sales Report</title>
+        <style>
+            table, th, td {
+                border : 1px solid rgb(255, 0, 0);
+            }
+        </style>
+    </head>
+    <body>
+    <center>
+        <div>
+            <h1>Sales Report</h1>
+            <table>
+                <thead>
+                    <tr style="height :30px;">
+                        <th><h3>Date</h3></th>
+                        <th><h3>ICode</h3></th>
+                        <th><h3>Item Name</h3></th>
+                        <th><h3>Size</h3></th>
+                        <th><h3>Price</h3></th>
+                        <th><h3>QTY</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales %}
+                    <tr style="height :30px;">
+                        <td> {{ sale.Date }}</td>
+                        <td> {{ sale.Item_code }}</td>
+                        <td> {{ sale.Item_name }}</td>
+                        <td> {{ sale.Size }}</td>
+                        <td> {{ sale.Price }}</td>
+                        <td> {{ sale.QTY }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        </center>
+    </body>
+
+</html>

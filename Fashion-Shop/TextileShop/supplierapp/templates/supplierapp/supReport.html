@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <style>
+       table {
+          border-collapse: collapse;
+          width: 100%;
+      }
+
+      table,thead.th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+    </style>
+    <title>Supplier Report</title>
+  </head>
+  <body>
+  <center>
+    <br>
+    <h1><u>Supplier Report</u></h1><br>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Type of Supplier</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for supplier in sup %}
+                        <tr >
+                            <td style="text-align:center;">{{ supplier.name }}</td>
+                            <td style="text-align:center;">{{ supplier.address }}</td>
+                            <td style="text-align:center;">{{ supplier.type }}</td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+   </center>
+  </body>
+</html>
+

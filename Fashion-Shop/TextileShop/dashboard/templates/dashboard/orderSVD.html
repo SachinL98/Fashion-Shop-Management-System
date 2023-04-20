@@ -1,0 +1,45 @@
+{%extends 'partials/base.html'%}
+{% block tital %}order finance page{% endblock %}
+
+{%block content%}
+    <!--Table-->
+    <div class="container">
+        <div class="row my-4">
+            <h1>Order Details</h1>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-12">
+                <table class="table bg-white">
+                    <thead style="background-color:rgb(211, 208, 208);">
+                        <tr class="text-darck">
+                            <th scope="col">#</th>
+                            <th scope="col">Item_code</th>
+                            <th scope="col">Order date</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for orders in ordersF %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{orders.item_code}}</td>
+                            <td>{{orders.cancelledDate}}</td>
+                            <td>{{orders.quantity}}</td>
+                            <td>
+                                {{orders.total}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!--End Table-->
+{%endblock%}

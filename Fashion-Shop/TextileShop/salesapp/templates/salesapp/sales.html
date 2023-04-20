@@ -1,0 +1,70 @@
+{% extends 'sales_partials/base.html' %}
+{% block title %}Sales Page{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<br>
+<br>
+<center><h1>SALES</h1></center><br>
+
+<!--Table-->
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+            <div class="border bg-white p-3">
+                <h4>Add Sales</h4>
+                <hr>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                
+                    <br>
+
+                    <input class="btn btn-success btn-block" type="submit" value="Submit">
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white">
+                <thead style="background-color:rgb(211,208,208);">
+                    <tr class="text-drack">
+                        
+                        <th scope="col">Date</th>
+                        <th scope="col">ICode</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Size</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">QTY</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales %}
+                    <tr>
+                        
+                        <td>{{ sale.Date }}</td>
+                        <td>{{ sale.Item_code }}</td>
+                        <td>{{ sale.Item_name }}</td>
+                        <td>{{ sale.Size }}</td>
+                        <td>{{ sale.Price }}</td>
+                        <td>{{ sale.QTY }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'salesapp-sales-update' sale.id %}">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'salesapp-sales-delete' sale.id %}">Delete</a>
+                        </td>
+                    </tr>
+                    
+                    
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--End Table-->
+
+{% endblock %}

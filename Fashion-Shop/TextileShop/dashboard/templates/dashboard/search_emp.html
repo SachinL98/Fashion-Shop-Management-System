@@ -1,0 +1,50 @@
+{%extends 'partials/base.html'%}
+{% block tital %}Search Result Page{% endblock %}
+<br>
+{%block content%}
+<div class="container">
+    <div class="row my-4">
+    <div class="col-md-12">
+        <table class="table bg-white">
+            <thead style="background-color:rgb(211, 208, 208);">
+                <tr style="color: black;">
+                    <th scope="col">#</th>
+                    <th scope="col">EmpID</th>
+                    <th scope="col">Basic Salary</th>
+                    <th scope="col">OT Houres</th>
+                    <th scope="col">OT Rate</th>
+                    <th scope="col">Deduction</th>
+                    <th scope="col">Increment</th>
+                    <th scope="col">payment date</th>
+                    <th scope="col">Total Salary</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results%}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{result.empid}}</td>
+                    <td>{{result.basic_Salary}}</td>
+                    <td>{{result.OT_houres}}</td>
+                    <td>
+                        {{result.OT_Rate}}
+                    </td>
+                    <td>{{result.deduction}}</td>
+                    <td>{{result.increment}}</td>
+                    <td>{{result.date}}</td>
+                    <td>{{result.netsal}}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{%url 'dashboard-employee_updateF' result.id%}">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="{%url 'dashboard-employee_deleteF' result.id%}">Delete</a>
+                    </td>
+                
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+
+{%endblock%}

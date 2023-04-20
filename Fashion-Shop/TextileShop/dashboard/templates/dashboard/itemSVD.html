@@ -1,0 +1,46 @@
+{%extends 'partials/base.html'%}
+{% block tital %}item finance page{% endblock %}
+
+{%block content%}
+
+    <!--Table-->
+    <div class="container">
+        <div class="row my-4">
+            <h1>Item Details</h1>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-12">
+                <table class="table bg-white">
+                    <thead style="background-color:rgb(211, 208, 208);">
+                        <tr class="text-darck">
+                            <th scope="col">#</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for items in itemsF %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{items.name}}</td>
+                            <td>{{items.category}}</td>
+                            <td>{{items.quantity}}</td>
+                            <td>
+                                {{items.price}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!--End Table-->
+{%endblock%}

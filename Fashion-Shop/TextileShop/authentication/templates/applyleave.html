@@ -1,0 +1,148 @@
+{% extends 'baseNavbar.html' %}
+
+
+
+{% block content %}
+
+
+<div class="leaves">
+
+    <div class="upper">
+
+
+        <div class="chart">
+            <h4>Annual Leaves</h4>
+
+            <p>Avaliable  leaves: {{avaliable}} </p>
+            <p>Taken leaves: {{count}} </p>
+            <canvas id="myChart" width="400" height="400"></canvas>
+            <script>
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Avaliable", "Taken"],
+                        datasets: [{
+                            label: '',
+                            data: [20 - {{ count }}, {{ count }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </script>
+        </div>
+
+
+        <div class="googleCalender">
+
+            <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FColombo&showNav=1&mode=MONTH&title=Public%20Calender&src=amF5YW5hbmRhbmFmYWNoaW9uQGdtYWlsLmNvbQ&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4tZ2IubGsjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%2333B679&color=%230B8043" style="border:solid 1px #777" width="600" height="400" frameborder="0" scrolling="no"></iframe>
+       
+        </div>
+
+
+        <div class="table_section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Leave Type</th>
+                        <th>Applied on</th>
+                        <th>Reason</th>
+                        <th>Current Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for emp in leaves %}
+                    <tr>
+                        <td>{{emp.leaveType}}</td>
+                        <td>{{emp.date}}</td>
+                        <td>{{emp.reason}}</td>
+                        <td>{{emp.status}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div class="wrapper">
+        <h2>Apply Leave</h2>
+        <div class="content">
+            <form action="applyleave" method="post" novalidate>
+                {%csrf_token%}
+                <input name="empid" type="hidden" value="{{ request.session.empid }}" required>
+                <label for="">Select Date</label>
+                <input class="form-control" type="date" name="date"   id = "demo" required>
+                <label for="">Reason</label>
+                <textarea rows="5" name="reason" placeholder="Enter your reason" required></textarea>
+                <label for="">Leave Type</label>
+                <select name="leavetype" required>
+                    {% for leave in leaveType %}
+                    <option value="{{leave.leave_type}}">{{leave.leave_type}}</option>
+                    {% endfor %}
+                    <input type="submit" id="leavebtn" value="Submit">
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+
+        var date = new Date(); 
+        var tDate = date.getDate();
+        var tMonth = date.getMonth() + 1;
+        var tYear = date.getUTCFullYear();
+
+       if(tDate < 10){
+            tDate = '0' + tDate;
+        }
+        if(tMonth < 10){
+            tMonth = '0' + tMonth;
+        }
+
+       
+
+        var today = tYear + "-" + tMonth + "-" + tDate;
+        console.log(today);
+        document.getElementById("demo").setAttribute('min',today);
+
+    </script>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
